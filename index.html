@@ -38,6 +38,47 @@
         <div id="status-message"></div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // REPLACE THE URL BELOW WITH YOUR ACTUAL GOOGLE APPS SCRIPT WEB APP URL
+        const SCRIPT_URL = 'YOUR_WEB_APP_URL_HERE';
+
+        const form = document.getElementById('contactForm');
+        const statusMessage = document.getElementById('status-message');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            statusMessage.style.color = '#333';
+            statusMessage.textContent = 'Sending data...';
+
+            const formData = new URLSearchParams();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('message', document.getElementById('message').value);
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            })
+            .then(() => {
+                statusMessage.style.color = 'green';
+                statusMessage.textContent = 'Thank you! Your response has been recorded.';
+                form.reset();
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit';
+            })
+            .catch(error => {
+                console.error('Error!', error);
+                statusMessage.style.color = 'red';
+                statusMessage.textContent = 'Something went wrong. Please try again.';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit';
+            });
+        });
+    </script>
 </body>
 </html>
