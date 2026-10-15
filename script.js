@@ -1,5 +1,5 @@
 // Paste your deployed Google Apps Script Web App URL below inside the quotes
-const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwCnhomvP5MAY9S1UUMcrJe8nKuLveyfSOWqRvcqFnjRgRLFSUdL8DeVoUmDlaCBHjTNQ/exec';
 
 const form = document.getElementById('contactForm');
 const statusMessage = document.getElementById('status-message');
